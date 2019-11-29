@@ -14,5 +14,10 @@ setup(
         'extendedBuiltins.tests'
     ],
     python_requires='>=3.6',
-    zip_safe=False
+    zip_safe=False,
+    install_requires=[
+        "pytest",
+    ],
+    scripts=['runtests'],
 )
+

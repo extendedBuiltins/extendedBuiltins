@@ -30,7 +30,7 @@ class string(str):
 
             >>> s = string("Hello World")
             >>> s - ["H", "o", "d"]
-            'ell Wrl
+            'ell Wrl'
             >>> s - ["H", "orl"]
             'ello Wd'
 
