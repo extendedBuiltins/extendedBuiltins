@@ -16,19 +16,19 @@ class string(str):
             --------
             Subtract a positive integer to the string:
 
-            >>> s = string("Hello World")
+            >>> s = eb.string("Hello World")
             >>> s - 4
             'Hello W'
 
             Subtract a negative integer to the string:
 
-            >>> s = string("Hello World")
+            >>> s = eb.string("Hello World")
             >>> s - -4
             'o World'
 
             Subtract a `list` or `tuple` to the string:
 
-            >>> s = string("Hello World")
+            >>> s = eb.string("Hello World")
             >>> s - ["H", "o", "d"]
             'ell Wrl'
             >>> s - ["H", "orl"]
@@ -36,7 +36,7 @@ class string(str):
 
             Subtract a `str` or `eb.string` to the string:
 
-            >>> s = string("Hello World")
+            >>> s = eb.string("Hello World")
             >>> s - "Hello"
             ' World'
             >>> s - " "
@@ -59,7 +59,7 @@ class string(str):
         elif isinstance(other, str) or isinstance(other, string):
             return string(self.text.replace(other, ''))
 
-    def __truediv__(self, other):
+    def __floordiv__(self, other):
         """
         Returns
             -------
@@ -69,18 +69,18 @@ class string(str):
             --------
             Divide the string by an integer:
 
-            >>> s = string("Hello World")
-            >>> s / 3
+            >>> s = eb.string("Hello World")
+            >>> s // 3
             ['Hell', 'o Wo', 'rld']
-            >>> s / 4
+            >>> s // 4
             ['Hel', 'lo ', 'Wor', 'ld']
-            >>> s / 5
+            >>> s // 5
             ['Hel', 'lo ', 'Wor', 'ld', None]
-            >>> s / 6
+            >>> s // 6
             ['He', 'll', 'o ', 'Wo', 'rl', 'd']
-            >>> s / 10
+            >>> s // 10
             ['He', 'll', 'o ', 'Wo', 'rl', 'd', None, None, None, None]
-            >>> s / 11
+            >>> s // 11
             ['H', 'e', 'l', 'l', 'o', ' ', 'W', 'o', 'r', 'l', 'd']
             """
         if isinstance(other, int):
@@ -96,7 +96,7 @@ class string(str):
             raise TypeError("unsupported operand type(s) for /: '%s' and '%s'"
                             % (type(self).__name__, type(other).__name__))
 
-    def __floordiv__(self, other):
+    def __truediv__(self, other):
         """
         Returns
             -------
@@ -106,16 +106,16 @@ class string(str):
             --------
             Divide the string by an integer:
 
-            >>> s = string("Hello World")
-            >>> s // 1
+            >>> s = eb.string("Hello World")
+            >>> s / 1
             ['H', 'e', 'l', 'l', 'o', ' ', 'W', 'o', 'r', 'l', 'd']
-            >>> s // 2
+            >>> s / 2
             ['He', 'll', 'o ', 'Wo', 'rl', 'd']
-            >>> s // 3
+            >>> s / 3
             ['Hel', 'lo ', 'Wor', 'ld']
-            >>> s // 4
+            >>> s / 4
             ['Hell', 'o Wo', 'rld']
-            >>> s // 5
+            >>> s / 5
             ['Hello', ' Worl', 'd']
             """
         if isinstance(other, int):
