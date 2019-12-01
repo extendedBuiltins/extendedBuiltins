@@ -54,7 +54,6 @@ class string(str):
                     + str(self.text[to_upper]).upper()
                     + self.text[to_upper + 1:]
                 )
-
         if isinstance(to_upper, str):
             return string(self.text.replace(to_upper, str(to_upper).upper()))
 
@@ -64,7 +63,7 @@ class string(str):
             transformed_text = self.text
             for letter in to_upper:
                 if isinstance(letter, str):
-                    transformed_text = transformed_text\
+                    transformed_text = transformed_text \
                         .replace(letter, str(letter).upper())
                 else:
                     raise TypeError('expected string of length 1,'
@@ -108,12 +107,12 @@ class string(str):
                 return string(
                     self.text[:index].lower()
                     + self.text[index].upper()
-                    + self.text[index+1:].lower()
+                    + self.text[index + 1:].lower()
                 )
 
         else:
             raise TypeError('capitalize() argument 1 must be int or None,'
-                            ' not %s' % (type(index).__name__, ))
+                            ' not %s' % (type(index).__name__,))
 
     def __sub__(self, other):
         """
