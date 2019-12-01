@@ -43,31 +43,20 @@ class string(str):
                 'HeLLO WOrLD'
                 """
         if to_upper is None:
-            output = ''
-            for letter in self.text:
-                if letter not in 'abcdefghijklmnopqrstuvwxyz':
-                    output += letter
-                elif letter in 'abcdefghijklmnopqrstuvwxyz':
-                    output += chr(ord(letter) - 32)
-                else:
-                    output += letter
-            return string(output)
+            return string(str(self.text).upper())
 
         if isinstance(to_upper, int):
             if len(self.text) <= to_upper:
                 raise IndexError('string index out of range')
             else:
-                capitalized_letter = self.text[to_upper]
-                if capitalized_letter in 'abcdefghijklmnopqrstuvwxyz':
-                    capitalized_letter = chr(ord(capitalized_letter) - 32)
                 return string(
                     self.text[:to_upper]
-                    + capitalized_letter
+                    + str(self.text[to_upper]).upper()
                     + self.text[to_upper + 1:]
                 )
 
         if isinstance(to_upper, str):
-            return string(self.text.replace(to_upper, chr(ord(to_upper) - 32)))
+            return string(self.text.replace(to_upper, str(to_upper).upper()))
 
         if isinstance(to_upper, tuple) \
                 or isinstance(to_upper, set) \
@@ -76,7 +65,7 @@ class string(str):
             for letter in to_upper:
                 if isinstance(letter, str):
                     transformed_text = transformed_text\
-                        .replace(letter, chr(ord(letter) - 32))
+                        .replace(letter, str(letter).upper())
                 else:
                     raise TypeError('expected string of length 1,'
                                     ' but int found')
