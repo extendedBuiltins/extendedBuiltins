@@ -6,6 +6,126 @@ class string(str):
         super().__init__()
         self.text = str(eb_string)
 
+    def upper(self, to_upper=None):
+        """
+            Returns
+                -------
+                out : `eb.string`
+                    TODO: add better documentation
+            Examples
+                --------
+                Upper all letters:
+
+                >>> s = eb.string("Hello World")
+                >>> s.upper()
+                'HELLO WORLD'
+
+                Upper nth letter:
+
+                >>> s = eb.string("Hello World")
+                >>> s.upper(8)
+                'Hello WoRld'
+
+                Upper one specific letters:
+
+                >>> s = eb.string("Hello World")
+                >>> s.upper("o")
+                'HellO WOrld'
+                >>> s.upper("l")
+                'HeLLo WorLd'
+
+                Upper multiple specific letters:
+
+                >>> s = eb.string("Hello World")
+                >>> s.upper(["l", "o"])
+                'HeLLO WOrLd'
+                >>> s.upper(["l", "o", "d"])
+                'HeLLO WOrLD'
+                """
+        if to_upper is None:
+            output = ''
+            for letter in self.text:
+                if letter not in 'abcdefghijklmnopqrstuvwxyz':
+                    output += letter
+                elif letter in 'abcdefghijklmnopqrstuvwxyz':
+                    output += chr(ord(letter) - 32)
+                else:
+                    output += letter
+            return string(output)
+
+        if isinstance(to_upper, int):
+            if len(self.text) <= to_upper:
+                raise IndexError('string index out of range')
+            else:
+                capitalized_letter = self.text[to_upper]
+                if capitalized_letter in 'abcdefghijklmnopqrstuvwxyz':
+                    capitalized_letter = chr(ord(capitalized_letter) - 32)
+                return string(
+                    self.text[:to_upper]
+                    + capitalized_letter
+                    + self.text[to_upper + 1:]
+                )
+
+        if isinstance(to_upper, str):
+            return string(self.text.replace(to_upper, chr(ord(to_upper) - 32)))
+
+        if isinstance(to_upper, tuple) \
+                or isinstance(to_upper, set) \
+                or isinstance(to_upper, list):
+            transformed_text = self.text
+            for letter in to_upper:
+                if isinstance(letter, str):
+                    transformed_text = transformed_text\
+                        .replace(letter, chr(ord(letter) - 32))
+                else:
+                    raise TypeError('expected string of length 1,'
+                                    ' but int found')
+            return string(transformed_text)
+
+        else:
+            raise TypeError('upper() argument 1 must be %s, not %s'
+                            % (
+                                'int, str, list, tuple or set',
+                                type(to_upper).__name__,
+                            ))
+
+    def capitalize(self, index=None):
+        """
+            Returns
+                -------
+                out : `eb.string`
+                    TODO: add better documentation
+            Examples
+                --------
+                Capitalize first letter:
+
+                >>> s = eb.string("hello World")
+                >>> s.capitalize()
+                'Hello world'
+
+                Capitalize nth letter:
+
+                >>> s = eb.string("Hello World")
+                >>> s.capitalize(8)
+                'hello woRld'
+                """
+        if index is None:
+            return string(self.text[0].upper() + self.text[1:].lower())
+
+        if isinstance(index, int):
+            if len(self.text) <= index:
+                raise IndexError('string index out of range')
+            else:
+                return string(
+                    self.text[:index].lower()
+                    + self.text[index].upper()
+                    + self.text[index+1:].lower()
+                )
+
+        else:
+            raise TypeError('capitalize() argument 1 must be int or None,'
+                            ' not %s' % (type(index).__name__, ))
+
     def __sub__(self, other):
         """
         Returns

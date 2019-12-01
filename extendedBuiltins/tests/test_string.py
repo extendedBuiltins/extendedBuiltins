@@ -2,6 +2,38 @@ import extendedBuiltins as eb
 
 
 class TestStringClass:
+    """
+    Functions:
+    """
+    def test_upper(self):
+        s = eb.string("Hello World")
+        assert s.upper() == 'HELLO WORLD'
+
+    def test_upper_nth_letter(self):
+        s = eb.string("Hello World")
+        assert s.upper(8) == 'Hello WoRld'
+
+    def test_upper_one_specific_letter(self):
+        s = eb.string("Hello World")
+        assert s.upper("o") == 'HellO WOrld'
+        assert s.upper("l") == 'HeLLo WorLd'
+
+    def test_upper_multiple_specific_letter(self):
+        s = eb.string("Hello World")
+        assert s.upper(["l", "o"]) == 'HeLLO WOrLd'
+        assert s.upper(["l", "o", "d"]) == 'HeLLO WOrLD'
+
+    def test_capitalize(self):
+        s = eb.string("hello World")
+        assert s.capitalize() == 'Hello world'
+
+    def test_capitalize_nth_letter(self):
+        s = eb.string("Hello World")
+        assert s.capitalize(8) == 'hello woRld'
+
+    """
+    Operations:
+    """
     def test_sub_pos_int(self):
         s = eb.string("Hello World")
         assert s - 4 == 'Hello W'
