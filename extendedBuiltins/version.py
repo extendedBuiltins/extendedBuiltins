@@ -2,8 +2,8 @@
 
 short_version = '0.1.0' 
 version = '0.1.0' 
-full_version = '0.1.0.dev0+3fe32ee' 
-git_revision = '3fe32eed7a4ae3d19f9a40541fe2824a93112027' 
+full_version = '0.1.0.dev0+ad6adab' 
+git_revision = 'ad6adab71c8783e218671a6e4bcc36dc8e5eb59d' 
 release = False 
 
 

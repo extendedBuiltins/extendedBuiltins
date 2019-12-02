@@ -3,4 +3,4 @@ python:
 - "3.7"
 os: linux
 script:
-- pip3.7 install . && ./runtest
+- pip3.7 install .
